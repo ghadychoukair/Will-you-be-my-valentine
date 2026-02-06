@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f4e1d2">
+    <meta name="description" content="A sweet Valentine's Day invitation">
+    <title>Will You Be My Valentine?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;500&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>Will you be my valentine? 💖</h1>
+            <p>Click one of the buttons below</p>
+            
+            <div class="buttons-container">
+                <button class="yes-btn" id="yesBtn" type="button" aria-label="Say yes to be my valentine">
+                    Yes ❤️
+                </button>
+                <button class="no-btn" id="noBtn" type="button" aria-label="Say no">
+                    No 😐
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal/Popup -->
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-content">
+            <p id="modal-title">Wrong choice, please try again! 😊</p>
+            <button class="close-btn" id="closeBtn" type="button" aria-label="Close and try again">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

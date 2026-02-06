@@ -1,0 +1,275 @@
+/* Vintage Theme Styles - Mobile Responsive */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f4e1d2; /* Warm light brown */
+    color: #5b3e24; /* Dark brown */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Merriweather', serif;
+    color: #3b2922; /* Darker brown for headers */
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+button {
+    background-color: #d7b89c; /* Soft warm brown */
+    color: #3b2922; /* Darker brown text */
+    border: 2px solid #5b3e24; /* Dark brown border */
+    border-radius: 5px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    touch-action: manipulation;
+}
+
+/* Button styles for both hover and active states */
+button:hover,
+button:active {
+    background-color: #c6a783; /* Slightly darker */
+    transform: scale(1.05);
+}
+
+button:focus {
+    outline: 3px solid #5b3e24;
+    outline-offset: 2px;
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.content {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(91, 62, 36, 0.1);
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+}
+
+.yes-btn,
+.no-btn {
+    width: 100%;
+    max-width: 250px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+}
+
+.yes-btn {
+    background-color: #d7969c; /* Soft rose */
+    border-color: #c97a87;
+}
+
+.yes-btn:hover,
+.yes-btn:active {
+    background-color: #c97a87;
+}
+
+.no-btn {
+    background-color: #b3b3a8; /* Soft grey */
+    border-color: #9a9a8f;
+}
+
+.no-btn:hover,
+.no-btn:active {
+    background-color: #9a9a8f;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #f4e1d2; /* Modal background */
+    color: #5b3e24; /* Modal text color */
+    border-radius: 15px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 30px rgba(59, 41, 34, 0.3);
+    max-width: 90%;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+.close-btn {
+    width: 100%;
+    max-width: 200px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Tablet Styles (768px and up) */
+@media (min-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    p {
+        font-size: 1.2rem;
+    }
+
+    .content {
+        padding: 60px 50px;
+    }
+
+    .buttons-container {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    .yes-btn,
+    .no-btn {
+        width: 150px;
+        max-width: 100%;
+    }
+
+    button:hover {
+        transform: scale(1.08);
+    }
+}
+
+/* Desktop Styles (1024px and up) */
+@media (min-width: 1024px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+    .content {
+        padding: 80px 60px;
+    }
+
+    .buttons-container {
+        gap: 30px;
+    }
+
+    .yes-btn,
+    .no-btn {
+        width: 180px;
+    }
+}
+
+/* Large screens (1440px and up) */
+@media (min-width: 1440px) {
+    h1 {
+        font-size: 3.5rem;
+    }
+
+    .yes-btn,
+    .no-btn {
+        width: 200px;
+        padding: 18px 36px;
+    }
+}
+
+/* Accessibility: Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Small phones (under 480px) */
+@media (max-width: 479px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .content {
+        padding: 30px 20px;
+    }
+
+    .yes-btn,
+    .no-btn {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+
+    .modal-content {
+        padding: 30px 20px;
+    }
+
+    .modal-content p {
+        font-size: 1.1rem;
+    }
+}
