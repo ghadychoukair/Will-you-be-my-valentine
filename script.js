@@ -15,7 +15,7 @@ yesBtn.addEventListener('click', function() {
     isAnimating = true;
     
     // Show success message
-    alert('🎉 You\'ve made me the happiest! 💕');
+    alert('🎉YAAAY I LOVE YOU WITH EVERY ATOM OF MY BODY BABYYYYY  💕');
     
     // Optional: Add celebration animation
     celebrate();
