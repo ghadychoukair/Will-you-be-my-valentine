@@ -3,106 +3,132 @@
 // Get DOM elements
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
-const modal = document.getElementById('modal');
-const closeBtn = document.getElementById('closeBtn');
+const yesModal = document.getElementById('yesModal');
+const noModal = document.getElementById('noModal');
+const closeYesBtn = document.getElementById('closeYesBtn');
+const closeNoBtn = document.getElementById('closeNoBtn');
+const content = document.querySelector('.content');
+const heartImageContainer = document.getElementById('heartImageContainer');
+const body = document.body;
 
 // Flag to prevent rapid clicks
 let isAnimating = false;
+let hasClickedYes = false;
 
-// Yes button handler
+// Yes button handler - Shows modal with celebratory message
 yesBtn.addEventListener('click', function() {
     if (isAnimating) return;
     isAnimating = true;
     
-    // Show success message
-    alert('🎉YAAAY I LOVE YOU WITH EVERY ATOM OF MY BODY BABYYYYY  💕');
-    
-    // Optional: Add celebration animation
+    showYesModal();
     celebrate();
     
     isAnimating = false;
 });
 
-// No button handler - Shows modal on mobile and desktop
+// No button handler - Shows modal asking to try again
 noBtn.addEventListener('click', function() {
     if (isAnimating) return;
     isAnimating = true;
     
-    showModal();
+    showNoModal();
     
     isAnimating = false;
 });
 
-// Close modal button
-closeBtn.addEventListener('click', function() {
-    closeModal();
+// Close Yes modal button
+closeYesBtn.addEventListener('click', function() {
+    closeYesModal();
+});
+
+// Close No modal button
+closeNoBtn.addEventListener('click', function() {
+    closeNoModal();
 });
 
 // Close modal when clicking outside (for desktop)
-modal.addEventListener('click', function(event) {
-    if (event.target === modal) {
-        closeModal();
+yesModal.addEventListener('click', function(event) {
+    if (event.target === yesModal) {
+        closeYesModal();
+    }
+});
+
+noModal.addEventListener('click', function(event) {
+    if (event.target === noModal) {
+        closeNoModal();
     }
 });
 
 // Close modal with Escape key (accessibility)
 document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && modal.classList.contains('show')) {
-        closeModal();
+    if (event.key === 'Escape') {
+        if (yesModal.classList.contains('show')) {
+            closeYesModal();
+        } else if (noModal.classList.contains('show')) {
+            closeNoModal();
+        }
     }
 });
 
-// Show modal function
-function showModal() {
-    modal.classList.add('show');
-    closeBtn.focus(); // Focus button for accessibility
+// Show Yes modal function
+function showYesModal() {
+    yesModal.classList.add('show');
+    closeYesBtn.focus();
 }
 
-// Close modal function
-function closeModal() {
-    modal.classList.remove('show');
-    noBtn.focus(); // Return focus to no button
+// Close Yes modal function
+function closeYesModal() {
+    yesModal.classList.remove('show');
+    hasClickedYes = true;
+    
+    // Hide original content and show heart image
+    content.classList.add('hidden');
+    heartImageContainer.style.display = 'block';
+    body.classList.add('celebration-mode');
+    
+    // Return focus
+    yesBtn.focus();
 }
 
-// Celebration animation (optional - creates floating hearts)
+// Show No modal function
+function showNoModal() {
+    noModal.classList.add('show');
+    closeNoBtn.focus();
+}
+
+// Close No modal function
+function closeNoModal() {
+    noModal.classList.remove('show');
+    noBtn.focus();
+}
+
+// Celebration animation - Creates floating hearts
 function celebrate() {
-    const hearts = ['❤️', '💕', '💖', '💗'];
+    const hearts = ['❤️', '💕', '💖', '💗', '💝'];
     
-    for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-        heart.style.position = 'fixed';
-        heart.style.left = Math.random() * 100 + '%';
-        heart.style.top = '0';
-        heart.style.fontSize = Math.random() * 20 + 20 + 'px';
-        heart.style.opacity = '1';
-        heart.style.pointerEvents = 'none';
-        heart.style.zIndex = '999';
-        heart.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
-        
-        document.body.appendChild(heart);
-        
-        setTimeout(() => heart.remove(), 3000);
-    }
-    
-    // Add falling animation if not already defined
-    if (!document.querySelector('style[data-animation="fall"]')) {
-        const style = document.createElement('style');
-        style.setAttribute('data-animation', 'fall');
-        style.textContent = `
-            @keyframes fall {
-                to {
-                    transform: translateY(100vh) rotate(360deg);
-                    opacity: 0;
-                }
-            }
-        `;
-        document.head.appendChild(style);
+    for (let i = 0; i < 25; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('div');
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.top = '-50px';
+            heart.style.fontSize = Math.random() * 20 + 25 + 'px';
+            heart.style.opacity = '1';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '999';
+            heart.style.animation = `fall ${Math.random() * 2 + 2.5}s linear forwards`;
+            heart.style.textShadow = '0 2px 4px rgba(0,0,0,0.2)';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 4500);
+        }, i * 100);
     }
 }
 
 // Touch feedback for buttons (mobile)
-[yesBtn, noBtn, closeBtn].forEach(button => {
+[yesBtn, noBtn, closeYesBtn, closeNoBtn].forEach(button => {
     button.addEventListener('touchstart', function() {
         this.style.opacity = '0.8';
     });
