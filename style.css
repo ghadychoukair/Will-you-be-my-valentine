@@ -300,11 +300,7 @@ button:focus {
 
 /* Heart Image Container - CENTERED */
 .heart-image-container {
-    text-align: center;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+   
     animation: heartPulse 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     margin-top: 40px;
 }
@@ -313,7 +309,7 @@ button:focus {
     max-width: 100%;
     width: 100%;
     max-width: 420px;
-    height: auto;
+    
     display: block;
     filter: drop-shadow(0 10px 40px rgba(255, 107, 157, 0.4))
             drop-shadow(0 0 20px rgba(255, 107, 157, 0.2));
