@@ -90,8 +90,8 @@ function closeYesModal() {
     // Start looping celebration hearts
     startCelebrationLoop();
     
-    // Return focus
-    yesBtn.focus();
+    // Return focus to closeYesBtn instead of yesBtn (which is now hidden)
+    closeYesBtn.focus();
 }
 
 // Show No modal function
