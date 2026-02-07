@@ -14,6 +14,7 @@ const body = document.body;
 // Flag to prevent rapid clicks
 let isAnimating = false;
 let hasClickedYes = false;
+let celebrationLoopInterval = null;
 
 // Yes button handler - Shows modal with celebratory message
 yesBtn.addEventListener('click', function() {
@@ -86,6 +87,9 @@ function closeYesModal() {
     heartImageContainer.style.display = 'block';
     body.classList.add('celebration-mode');
     
+    // Start looping celebration hearts
+    startCelebrationLoop();
+    
     // Return focus
     yesBtn.focus();
 }
@@ -102,7 +106,7 @@ function closeNoModal() {
     noBtn.focus();
 }
 
-// Celebration animation - Creates floating hearts
+// Celebration animation - Creates falling hearts (single burst)
 function celebrate() {
     const hearts = ['❤️', '💕', '💖', '💗', '💝'];
     
@@ -124,6 +128,42 @@ function celebrate() {
             
             setTimeout(() => heart.remove(), 4500);
         }, i * 100);
+    }
+}
+
+// Looping celebration - Creates falling hearts continuously
+function startCelebrationLoop() {
+    const hearts = ['❤️', '💕', '💖', '💗', '💝'];
+    
+    // Create hearts every 300ms
+    celebrationLoopInterval = setInterval(() => {
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const heart = document.createElement('div');
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = '-50px';
+                heart.style.fontSize = Math.random() * 20 + 25 + 'px';
+                heart.style.opacity = '1';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '999';
+                heart.style.animation = `fall ${Math.random() * 2 + 2.5}s linear forwards`;
+                heart.style.textShadow = '0 2px 4px rgba(0,0,0,0.2)';
+                
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 4500);
+            }, i * 100);
+        }
+    }, 500); // Creates new hearts every 500ms
+}
+
+// Stop celebration loop function (if needed)
+function stopCelebrationLoop() {
+    if (celebrationLoopInterval) {
+        clearInterval(celebrationLoopInterval);
+        celebrationLoopInterval = null;
     }
 }
 
